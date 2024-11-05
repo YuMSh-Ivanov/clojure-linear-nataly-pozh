@@ -1,0 +1,27 @@
+name: Java CI
+
+on:
+  push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+     - name: Build
+        run: javac -cp "test:src:lib/clojure-1.12.0.jar:lib/core.specs.alpha-0.4.74.jar:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar:lib/spec.alpha-0.5.238.jar" -d out test/linear/LinearTest.java
+
+      - name: Test Base
+        run: java -cp "out:src:lib/clojure-1.12.0.jar:lib/core.specs.alpha-0.4.74.jar:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar:lib/spec.alpha-0.5.238.jar" org.junit.runner.JUnitCore linear.LinearTest
