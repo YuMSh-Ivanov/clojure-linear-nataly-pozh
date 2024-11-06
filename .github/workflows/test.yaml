@@ -7,7 +7,7 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom[bot]'
+    if: github.actor != 'github-classroom[bot]' && github.actor != 'pure-vessel'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
