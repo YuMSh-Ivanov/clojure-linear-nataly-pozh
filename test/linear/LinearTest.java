@@ -1,5 +1,6 @@
 package linear;
 
+import base.ClojureCall;
 import base.ClojureNamespace;
 import org.junit.Assert;
 import org.junit.Test;
@@ -148,6 +149,11 @@ public class LinearTest {
     public void testValid() {
         testRandom(2);
         testRandom(1);
+        Assert.assertEquals("(dot) is expected to be zero",
+                ClojureCall.nonNullTyped(inner.actual(), "(dot)", Number.class, new Object[0]).doubleValue(),
+                0.0,
+                0.0
+        );
         testRandom(3);
         testRandom(4);
         testRandom(5);
