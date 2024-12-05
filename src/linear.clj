@@ -1,7 +1,7 @@
 (ns linear)
 
     (defn check-vecs [vecs]
-        (and (every? vector? vecs) (every? #(every? number? %) vecs) (every? #(== (count (first vecs)) (count %)) vecs)))
+        (and (vector? vecs) (every? vector? vecs) (every? #(every? number? %) vecs) (every? #(== (count (first vecs)) (count %)) vecs)))
     
     (defn apply-mapv [f vecs]
         {:pre [(check-vecs vecs)]}
@@ -25,13 +25,14 @@
         :else (apply + (apply-mapv * vecs))))
     
     (defn v*scal [v scal]
-        ;; {:pre [(check-vecs [v])]}
+        {:pre [(check-vecs [v])]}
         (mapv #(* scal %) v))
     
     (defn v*s [v & s]
         (v*scal v (apply * s)))
     
     (defn m [f ms]
+        {:pre [(every? check-vecs ms)]}
         (apply mapv #(apply-mapv f %&) ms))
     
     (defn m+ [& ms]
