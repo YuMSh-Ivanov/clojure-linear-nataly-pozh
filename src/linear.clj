@@ -32,7 +32,7 @@
         (v*scal v (apply * s)))
     
     (defn m [f ms]
-        {:pre [(every? check-vecs ms)]}
+        {:pre [(and (every? check-vecs ms) (every? #(== (count (first ms)) (count %)) ms))]}
         (apply mapv #(apply-mapv f %&) ms))
     
     (defn m+ [& ms]
