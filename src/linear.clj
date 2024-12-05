@@ -1,7 +1,7 @@
 (ns linear)
 
     (defn check-vecs [vecs]
-        (every? #(== (count (first vecs)) (count %)) vecs))
+        (and (every? vector? vecs) (every? #(== (count (first vecs)) (count %)) vecs)))
     
     (defn apply-mapv [f vecs]
         {:pre [(check-vecs vecs)]}
