@@ -4,7 +4,7 @@
         (and (vector? vecs) (every? vector? vecs) (every? #(every? number? %) vecs) (every? #(== (count (first vecs)) (count %)) vecs)))
     
     (defn apply-mapv [f vecs]
-        {:pre [(check-vecs vecs)]}
+        {:pre [(check-vecs (vec vecs))]}
         (apply mapv f vecs))
     
     (defn v+ [& vecs] 
