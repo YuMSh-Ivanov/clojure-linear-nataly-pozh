@@ -25,6 +25,7 @@
         :else (apply + (apply-mapv * vecs))))
     
     (defn v*scal [v scal]
+        {:pre [(check-vecs [v])]}
         (mapv #(* scal %) v))
     
     (defn v*s [v & s]
