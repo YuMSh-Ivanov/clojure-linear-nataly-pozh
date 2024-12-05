@@ -1,7 +1,7 @@
 (ns linear)
 
     (defn check-vecs [vecs]
-        (and (coll? vecs) (every? #(every? number? %) vecs) (every? #(== (count (first vecs)) (count %)) vecs)))
+        (and (coll? vecs) (every? vector? vecs) (every? #(every? number? %) vecs) (every? #(== (count (first vecs)) (count %)) vecs)))
 
     (defn check-matr [matrs]
         (and (coll? matrs) (every? vector? matrs) (every? check-vecs matrs) (every? #(== (count (first matrs)) (count %)) matrs)))
