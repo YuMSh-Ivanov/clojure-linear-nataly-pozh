@@ -3,9 +3,6 @@
     (defn check-vecs [vecs]
         (and (coll? vecs) (every? vector? vecs) (every? #(every? number? %) vecs) (every? #(== (count (first vecs)) (count %)) vecs)))
 
-    (defn check-matr [matrs]
-        (and (coll? matrs) (every? vector? matrs) (every? check-vecs matrs) (every? #(== (count (first matrs)) (count %)) matrs)))
-
     (defn apply-mapv [f vecs]
         {:pre [(check-vecs vecs)]}
         (apply mapv f vecs))
@@ -35,7 +32,7 @@
         (v*scal v s))
     
     (defn m [f ms]
-        {:pre [(check-matr ms)]}
+        {:pre [(and (vector? ms) (every? vector? ms))]}
         (apply mapv #(apply-mapv f %&) ms))
     
     (defn m+ [& ms]
