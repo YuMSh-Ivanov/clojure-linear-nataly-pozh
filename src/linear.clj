@@ -1,5 +1,3 @@
-(ns linear)
-
 (defn apply-mapv [f vecs]
     (apply mapv f vecs))
 
@@ -16,7 +14,9 @@
     (apply-mapv / vecs))
 
 (defn dot [& vecs]
-    (apply + (apply-mapv * vecs)))
+  (cond
+    (empty? vecs) 0
+    :else (apply + (apply-mapv * vecs))))
 
 (defn v*s [v & s]
     (mapv #(* (apply * s) %) v))
