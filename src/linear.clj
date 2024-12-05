@@ -1,10 +1,10 @@
 (ns linear)
 
     (defn check-sizes [vecs]
-        (every? #(every? number? %) vecs) (every? #(== (count (first vecs)) (count %)) vecs))
+        (every? #(== (count (first vecs)) (count %)) vecs))
 
     (defn check-vecs [vecs]
-        (and (coll? vecs) (every? vector? vecs) (check-sizes vecs)))
+        (and (coll? vecs) (every? vector? vecs) (every? #(every? number? %) vecs) (check-sizes vecs)))
 
     (defn apply-mapv [f vecs]
         {:pre [(check-vecs vecs)]}
