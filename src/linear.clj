@@ -32,7 +32,7 @@
         (v*scal v s))
     
     (defn m [f ms]
-        {:pre [(and (vector? ms) (every? vector? ms))]}
+        {:pre [(every? vector? ms)]}
         (apply mapv #(apply-mapv f %&) ms))
     
     (defn m+ [& ms]
